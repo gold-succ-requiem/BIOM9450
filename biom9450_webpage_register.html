@@ -1,0 +1,148 @@
+<!--
+DOCTYPE html
+-->
+
+<html> 
+
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Registration | AHICon</title>
+        <meta name="description" content="biom9450">
+        <link rel="stylesheet" href="brackets_main.css">
+		<script>
+			// copy pasted from w3schools - idk what it does yet
+			// no clue how to integrate this into email form, s.t. email will submit iff email field is filled AND with required chars
+			// Plagiarised with love from https://culttt.com/2012/08/08/really-simple-inline-javascript-validation/
+			// But this is for a specific form though, not for all forms
+			function validateForm() {
+				// Set error catcher  
+				var error = 0;
+				
+				// Check name  
+				if(!validateName(‘name’)){  
+					document.getElementById(‘nameError’).style.display = "block";  
+					error++;  // adds value to error
+				}
+
+				// Don’t submit form if there are errors  
+				if(error > 0){  
+					return false;  
+				} 				
+			}
+			
+			// need function that displays alerts on click of submit
+			// alerts must be: a) short ; b) next to box
+			// Function to check whether both passwords is same or not.
+			// Stolen and reverse-engineered from geeksforgeeks 20/10/19
+			// https://www.geeksforgeeks.org/password-matching-using-javascript/
+            function checkPassword(form) { 
+                password1 = loginForm.pass.value; 
+                password2 = loginForm.pass2.value; 
+  
+                // If password not entered 
+                if (password1 == '') 
+                    alert ("Please enter Password"); 
+                      
+                // If confirm password not entered 
+                else if (password2 == '') 
+                    alert ("Please enter confirm password"); 
+                      
+                // If Not same return False.     
+                else if (password1 != password2) { 
+                    alert ("Password did not match: Please try again...") 
+                    return false; 
+                } 
+  
+                // If same return True. 
+                else{ 
+                    // alert("Password Match: Welcome to GeeksforGeeks!") 
+                    return true; 
+                } 
+            } 
+			
+			// function gender: returns an element from gender list box
+			function gender() {
+				var x = document.getElementById("gender").value;
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="header">
+        <a href = "biom9450_webpage.html">
+        <h1>AHICon<br>
+            Australian Health Informatics Conference 2019</h1>
+		<! add pic >
+        </a>
+        <p>16 Dec, Sydney</p>
+        </div>
+	
+		<! each login will now have its own form field>
+		<h2>Login details</h2>
+			<form name="loginForm">
+				<! partially stolen from w3schools :D>
+				E-mail <input type="email" name="email" placeholder="address@email.com" pattern="[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$"><br>
+				
+				<! need code to validate pass2 = pass ; consider adapting copyText()>
+				Password <input type="text" id="pass" pattern="[A-Za-z0-9]{8,}"/><br>
+				Re-enter Password <input type="text" id="pass2"/><br>
+			</form>
+			<br>
+		
+		<h2>User details</h2>
+			<!-- 
+				- name fields: forename and surname have same structure
+				- form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+				- [A-Za-z-' ] may not work
+			-->
+			First Name <input type="text" id="forename" pattern="[A-Za-z-' ]"/><br>
+			
+			Surname <input type="text" id="surname" pattern="[A-Za-z-' ]" /><br>
+			
+			<!--
+				- dd / mm / yyyy
+				- cannot use type="date" - nigel's orders
+				- [day]{1,2}+\/[month]{1,2}+\/[year]{4} ; lol no you weren't born in 420 CE
+				- day: min = 1, max = 31
+				- month: min = 1, max = 12
+				- year: min = 1898, max = 2018 ; max ensures NO future dates are made ; min accounts for supercentenarians
+				-->
+			DOB <input type="text"/><br>
+			
+			<! list box for gender - includes inclusive "X" ; omitted joki joki "Attack Helicopter">
+			Gender <select id="gender" onchange="gender()">
+				<option value="female">Female</option>
+				<option value="male">Male</option>
+				<option value="x">X</option>
+			</select><br>
+			
+			<br>
+			<! opt in checkbox for marketing spam>
+			<input type="checkbox" name="spam" value="Yes"> I would like to receive marketing material<br>
+			<br>
+			<input type="submit" id="submit" name="submit" value="Submit" />
+			<! Stolen from https://culttt.com/2012/08/08/really-simple-inline-javascript-validation/>
+			<br>
+			<br>
+    
+    <div class="footer">
+		<TABLE border = "0"; cellspacing = "1"; cellpadding = "5"> <!-- start of table definition --> 
+			<!--
+                <CAPTION> no caption </CAPTION> caption definition 
+            --> 
+			<TR>   <!-- start of header row definition -->
+				<TH> Sponsored by<br>
+                    <a href="http://site.hl7.org.au/"><img src="hl7_aus.jpg" width="50%" height="50%"></a>
+                    </TH>
+				<TH> In cooperation with<br>
+                    <a href="http://www.hl7.org/"><img src="hl7_intl.png" width="25%" height="25%"></a>
+                    </TH>
+			</TR>  <!-- end of header row definition -->
+		</TABLE>
+		<p>HL7, CDA, and FHIR are registered trademarks of Health Level Seven International</p>
+		<p>HTML inspired by GSBmE</p>
+		<p>style inspired by Brackets</p>
+		<P>header style inspired by W3Schools</P>
+        </div>
+</html> 

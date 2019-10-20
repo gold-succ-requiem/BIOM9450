@@ -1,0 +1,58 @@
+<!doctype html>  
+<html lang="en">  
+
+<head>  
+    <meta charset="utf-8">  
+    <title>Validation tutorial</title>  
+    <script>  
+    // JS
+    // validates name input
+    function validateName(x){  
+		// alert(document.getElementById(x).value);
+        var re = /[A-Za-z -‘]$/;
+        if(re.test(document.getElementById(x).value)){
+        	document.getElementById(x).style.background =’#ccffcc’;  
+				// good bg colour
+            document.getElementById(x + ‘Error’).style.display = "none";  
+            	// no error
+            return true;  
+		}
+        else{  
+        	document.getElementById(x).style.background =’#e35152′;  
+			document.getElementById(x + ‘Error’).style.display = "block";  
+            return false;  
+		}
+	
+    }
+    
+    // validates entire form
+    function validateForm(){
+		// Set error catcher  
+		var error = 0;
+        // Check name - validateName() called by validateForm() on name
+		if(!validateName(‘name’)){
+        	document.getElementById(‘nameError’).style.display = "block";  
+			error++;  
+			}  
+		}
+        // Don’t submit form if there are errors  
+		if(error > 0){  
+			return false;  
+		}  
+    </script>
+</head>
+
+<body>
+    <form action="" onsubmit="return validateForm()">
+    	<! form tag returns validateForm() fxn>
+        <fieldset>  
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" onblur="validateName(name)" />  
+        <span id="nameError" style="display: none;">You can only use alphabetic characters, hyphens and apostrophes</span>  
+        <input type="submit" id="submit" name="submit" value="Submit" />  
+            <! submit button>
+        </fieldset>  
+    </form>
+</body>
+
+</html>
