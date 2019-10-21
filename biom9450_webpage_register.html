@@ -11,64 +11,134 @@ DOCTYPE html
         <meta name="description" content="biom9450">
         <link rel="stylesheet" href="brackets_main.css">
 		<script>
-			// copy pasted from w3schools - idk what it does yet
-			// no clue how to integrate this into email form, s.t. email will submit iff email field is filled AND with required chars
-			// Plagiarised with love from https://culttt.com/2012/08/08/really-simple-inline-javascript-validation/
-			// But this is for a specific form though, not for all forms
-			function validateForm() {
-				// Set error catcher  
-				var error = 0;
-				
-				// Check name  
-				if(!validateName(‘name’)){  
-					document.getElementById(‘nameError’).style.display = "block";  
-					error++;  // adds value to error
-				}
-
-				// Don’t submit form if there are errors  
-				if(error > 0){  
-					return false;  
-				} 				
+			function formValidation()
+			{
+			var uemail = document.registration.email;
+			var upass = document.registration.passID;
+			var ufname = document.registration.fName;
+			var usname = document.registration.sName;
+			var udob = document.registration.dob;
+			var ugender = document.registration.gender;
+			var uemail = document.registration.email;
+			var umsex = document.registration.msex;
+			var ufsex = document.registration.fsex; if(validEmail(uemail,5,12))
+			{
+			if(validPass(upass,7,12))
+			{
+			if(allLetter(ufname))
+			{
+			if(allLetter(usname))
+			{ 
+			if(genderSelect(ugender))
+			{
+			if(validDob(udob))
+			{ 
 			}
-			
-			// need function that displays alerts on click of submit
-			// alerts must be: a) short ; b) next to box
-			// Function to check whether both passwords is same or not.
-			// Stolen and reverse-engineered from geeksforgeeks 20/10/19
-			// https://www.geeksforgeeks.org/password-matching-using-javascript/
-            function checkPassword(form) { 
-                password1 = loginForm.pass.value; 
-                password2 = loginForm.pass2.value; 
-  
-                // If password not entered 
-                if (password1 == '') 
-                    alert ("Please enter Password"); 
-                      
-                // If confirm password not entered 
-                else if (password2 == '') 
-                    alert ("Please enter confirm password"); 
-                      
-                // If Not same return False.     
-                else if (password1 != password2) { 
-                    alert ("Password did not match: Please try again...") 
-                    return false; 
-                } 
-  
-                // If same return True. 
-                else{ 
-                    // alert("Password Match: Welcome to GeeksforGeeks!") 
-                    return true; 
-                } 
-            } 
-			
-			// function gender: returns an element from gender list box
-			function gender() {
-				var x = document.getElementById("gender").value;
+			}
+			}
+			}
+			}
+			}
+			return false;
+
+			} function validEmail(uemail,mx,my)
+			{
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if(uemail.value.match(mailformat))
+			{
+			return true;
+			}
+			else
+			{
+			alert("You have entered an invalid email address!");
+			uemail.focus();
+			return false;
+			}
+			}
+			function passid_validation(passid,mx,my)
+			{
+			var passid_len = passid.value.length;
+			if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+			{
+			alert("Password should not be empty / length be between "+mx+" to "+my);
+			passid.focus();
+			return false;
+			}
+			return true;
+			}
+			function allLetter(ufname)
+			{ 
+			var letters = /^[A-Za-z]+$/;
+			if(ufname.value.match(letters))
+			{
+			return true;
+			}
+			else
+			{
+			alert('First name must have alphabet characters only');
+			ufname.focus();
+			return false;
+			}
+			}
+			function allLetter(usname)
+			{ 
+			var letters = /^[A-Za-z]+$/;
+			if(usname.value.match(letters))
+			{
+			return true;
+			}
+			else
+			{
+			alert('Surname must have alphabet characters only');
+			ufname.focus();
+			return false;
+			}
+			}
+			function alphanumeric(uadd) // delete this
+			{ 
+			var letters = /^[0-9a-zA-Z]+$/;
+			if(uadd.value.match(letters))
+			{
+			return true;
+			}
+			else
+			{
+			alert('User address must have alphanumeric characters only');
+			uadd.focus();
+			return false;
+			}
+			}
+			function genderSelect(ugender)
+			{
+			if(ugender.value == "Default")
+			{
+			alert('Select your gender from the list');
+			ugender.focus();
+			return false;
+			}
+			else
+			{
+			return true;
+			}
+			}
+			function validDob(udob)
+			{ 
+			var numbers = /^[0-9]+$/;
+			if(udob.value.match(numbers))
+			{
+			return true;
+			}
+			else
+			{
+			alert('Date of birth must be between 1/1/1909 and 1/1/2009');
+			uzip.focus();
+			return false;
+			}
 			}
 		</script>
 	</head>
 
-	<body>
+	<body onload="document.registration.userid.focus();">
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
@@ -78,53 +148,36 @@ DOCTYPE html
         <p>16 Dec, Sydney</p>
         </div>
 	
-		<! each login will now have its own form field>
-		<h2>Login details</h2>
-			<form name="loginForm">
-				<! partially stolen from w3schools :D>
-				E-mail <input type="email" name="email" placeholder="address@email.com" pattern="[A-Za-z0-9._-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$"><br>
-				
-				<! need code to validate pass2 = pass ; consider adapting copyText()>
-				Password <input type="text" id="pass" pattern="[A-Za-z0-9]{8,}"/><br>
-				Re-enter Password <input type="text" id="pass2"/><br>
-			</form>
-			<br>
-		
-		<h2>User details</h2>
-			<!-- 
-				- name fields: forename and surname have same structure
-				- form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
-				- [A-Za-z-' ] may not work
-			-->
-			First Name <input type="text" id="forename" pattern="[A-Za-z-' ]"/><br>
-			
-			Surname <input type="text" id="surname" pattern="[A-Za-z-' ]" /><br>
-			
-			<!--
-				- dd / mm / yyyy
-				- cannot use type="date" - nigel's orders
-				- [day]{1,2}+\/[month]{1,2}+\/[year]{4} ; lol no you weren't born in 420 CE
-				- day: min = 1, max = 31
-				- month: min = 1, max = 12
-				- year: min = 1898, max = 2018 ; max ensures NO future dates are made ; min accounts for supercentenarians
-				-->
-			DOB <input type="text"/><br>
-			
-			<! list box for gender - includes inclusive "X" ; omitted joki joki "Attack Helicopter">
-			Gender <select id="gender" onchange="gender()">
-				<option value="female">Female</option>
-				<option value="male">Male</option>
-				<option value="x">X</option>
-			</select><br>
-			
-			<br>
-			<! opt in checkbox for marketing spam>
-			<input type="checkbox" name="spam" value="Yes"> I would like to receive marketing material<br>
-			<br>
-			<input type="submit" id="submit" name="submit" value="Submit" />
-			<! Stolen from https://culttt.com/2012/08/08/really-simple-inline-javascript-validation/>
-			<br>
-			<br>
+		<h1>Registration Form</h1>
+		Use tab keys to move from one input field to the next.
+		<form name='registration' onSubmit="return formValidation();">
+		<ul>
+		<li><label for="email">Email:</label></li>
+		<li><input type="text" name="email" size="30" /></li>
+		<li><label for="passid">Password:</label></li>
+		<li><input type="password" name="passid" size="20" /></li>
+		<li><label for="fName">First name:</label></li>
+		<li><input type="text" name="fName" size="50" /></li>
+		<li><label for="sName">Surname:</label></li>
+		<li><input type="text" name="sName" size="50" /></li>
+		<li><label for="gender">Gender:</label></li>
+		<li><select name="gender">
+		<option selected="" value="Default">(Please select a gender)</option>
+		<option value="XG">X</option>
+		<option value="FM">Female</option>
+		<option value="ML">Male</option>
+		</select></li>
+		<li><label for="dob">DOB:</label></li>
+		<li><input type="text" name="dob" /></li> <! nothing much past this point>
+		<li><label for="email">Email:</label></li>
+		<li><input type="text" name="email" size="50" /></li>
+		<li><label id="gender">Sex:</label></li>
+		<li><input type="radio" name="msex" value="Male" /><span>Male</span></li>
+		<li><input type="radio" name="fsex" value="Female" /><span>Female</span></li>
+		<li><label>I would like to receive promotional material.</label></li>
+		<li><input type="checkbox" name="yes" value="yes" checked /><span>Yes</span></li>
+		</ul>
+		</form>
     
     <div class="footer">
 		<TABLE border = "0"; cellspacing = "1"; cellpadding = "5"> <!-- start of table definition --> 
@@ -146,3 +199,21 @@ DOCTYPE html
 		<P>header style inspired by W3Schools</P>
         </div>
 </html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
