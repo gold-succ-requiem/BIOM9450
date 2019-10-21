@@ -13,12 +13,12 @@ DOCTYPE html
 		<script>
 			function formValidation()
 			{
-			var uemail = document.registration.email;
-			var upass = document.registration.passID;
-			var ufname = document.registration.fName;
-			var usname = document.registration.sName;
-			var udob = document.registration.dob;
-			var ugender = document.registration.gender; if(validEmail(uemail,5,12))
+			var uemail = biom9450_webpage_register.registration.email;
+			var upass = biom9450_webpage_register.registration.passID;
+			var ufname = biom9450_webpage_register.registration.fName;
+			var usname = biom9450_webpage_register.registration.sName;
+			var udob = biom9450_webpage_register.registration.dob;
+			var ugender = biom9450_webpage_register.registration.gender; if(validEmail(uemail,5,12))
 			{
 			if(validPass(upass,7,12))
 			{
@@ -142,7 +142,7 @@ DOCTYPE html
 		</script>
 	</head>
 
-	<body onload="document.registration.email.focus();">
+	<body onload="biom9450_webpage_register.registration.email.focus();">
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
