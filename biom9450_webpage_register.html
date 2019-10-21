@@ -134,6 +134,13 @@ DOCTYPE html
 			uzip.focus();
 			return false;
 			}
+			else
+			{
+			alert("Registration successful! Return to homepage.");
+			setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
+			// window.location.reload()
+			return true;
+			}
 			}
 		</script>
 	</head>
@@ -171,6 +178,7 @@ DOCTYPE html
 		<li><input type="text" name="dob" /></li> <! nothing much past this point>
 		<li><label>I would like to receive promotional material.</label></li>
 		<li><input type="checkbox" name="yes" value="" checked /><span>Yes</span></li>
+		<li><input type="submit" name="submit" value="Submit" /></li>
 		</ul>
 		</form>
     
