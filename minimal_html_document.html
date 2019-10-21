@@ -8,7 +8,189 @@
 	<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
 	<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />
 	<link rel="stylesheet" href="brackets_main.css" type="text/css" /> <!changed this to in house css>
-	<script src="BIOM9450_HTML_register_success.html"></script> <!js will be in separate file as well>
+	<!script src="BIOM9450_HTML_register_success.html"><!js will be in separate file as well>
+	<script>
+	// called on onsubmit
+	// calls all other functions - make sure functions are in correct order!
+	function formValidation() 
+	{
+		var uid = document.registration.userid; // replace with forename
+		var passid = document.registration.passid; // duplicate this with pass2 - must match
+		var uname = document.registration.username; // replace with surname 
+		var uadd = document.registration.address; // delete this
+		var ucountry = document.registration.country; // replace with gender
+		var uzip = document.registration.zip;
+		var uemail = document.registration.email; // make this first
+		var umsex = document.registration.msex;
+		var ufsex = document.registration.fsex; 
+		if(userid_validation(uid,5,12))
+		{
+			if(passid_validation(passid,7,12))
+			{
+				if(allLetter(uname))
+				{
+					if(alphanumeric(uadd))
+					{ 
+						if(countryselect(ucountry))
+						{
+							if(allnumeric(uzip))
+							{
+								if(ValidateEmail(uemail))
+								{
+									if(validsex(umsex,ufsex))
+									{
+									}
+								} 
+							}
+						} 
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	// validates userid - change to forename
+	// checks if 5 < len(userid) < 12
+	function userid_validation(uid,mx,my)
+	{
+		var uid_len = uid.value.length;
+		if (uid_len == 0 || uid_len >= my || uid_len < mx)
+		{
+			// mx = min ; my = max
+			alert("User Id should not be empty / length be between "+mx+" to "+my);
+			uid.focus();
+			return false;
+		}
+		return true;
+	}
+
+	// validates password - duplicate this
+	// checks if 7 < len(password) < 12 - will soon add special chara
+	function passid_validation(passid,mx,my)
+	{
+		var passid_len = passid.value.length;
+		if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+		{
+			alert("Password should not be empty / length be between "+mx+" to "+my);
+			passid.focus();
+			return false;
+		}
+		return true;
+	}
+
+	// validates username - will change to surname
+	// checks for alphabetical characters
+	function allLetter(uname)
+	{ 
+		var letters = /^[A-Za-z]+$/;
+		if(uname.value.match(letters))
+		{
+			return true;
+		}
+		else
+		{
+			alert('Username must have alphabet characters only');
+			uname.focus();
+			return false;
+		}
+	}
+
+	// validates address
+	// checks for alphanumeric
+	function alphanumeric(uadd)
+	{ 
+		var letters = /^[0-9a-zA-Z]+$/;
+		if(uadd.value.match(letters))
+		{
+			return true;
+		}
+		else
+		{
+			alert('User address must have alphanumeric characters only');
+			uadd.focus();
+			return false;
+		}
+	}
+
+	// validates country
+	// checks country is in list - retool for gender
+	function countryselect(ucountry)
+	{
+		if(ucountry.value == "Default")
+		{
+			alert('Select your country from the list');
+			ucountry.focus();
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	// validates zip code
+	// checks if zip is numeric
+	function allnumeric(uzip)
+	{ 
+		var numbers = /^[0-9]+$/;
+		if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+			alert('ZIP code must have numeric characters only');
+			uzip.focus();
+			return false;
+		}
+	}
+
+	// validates email
+	function ValidateEmail(uemail)
+	{
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(uemail.value.match(mailformat))
+		{
+			return true;
+		}
+		else
+		{
+			alert("You have entered an invalid email address!");
+			uemail.focus();
+			return false;
+		}
+	}
+
+	// validates gender
+	// might remove this top lmao
+	function validsex(umsex,ufsex)
+	{
+		// adds value to counter - form invalid if x == 0!
+		x=0;
+
+		if(umsex.checked) 
+		{
+			x++;
+		} 
+		if(ufsex.checked)
+		{
+			x++; 
+		}
+		if(x==0)
+		{
+			alert('Select Male/Female');
+			umsex.focus();
+			return false;
+		}
+		else
+		{
+			alert('Form Successfully Submitted');
+			window.location.reload()
+			return true;
+		}
+	}
+	</script>
 </head>
 
 <body onload="document.registration.userid.focus();">
