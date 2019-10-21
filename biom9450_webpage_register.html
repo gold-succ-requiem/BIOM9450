@@ -142,7 +142,7 @@ DOCTYPE html
 		</script>
 	</head>
 
-	<body onload="document.registration.userid.focus();">
+	<body onload="document.registration.email.focus();">
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
@@ -155,28 +155,26 @@ DOCTYPE html
 		<h1>Registration Form</h1>
 		Use tab keys to move from one input field to the next.
 		<form name='registration' onSubmit="return formValidation();">
-		<ul>
-		<li><label for="email">Email:</label></li>
-		<li><input type="text" name="email" size="30" /></li>
-		<li><label for="passid">Password:</label></li>
-		<li><input type="password" name="passid" size="20" /></li>
-		<li><label for="fName">First name:</label></li>
-		<li><input type="text" name="fName" size="50" /></li>
-		<li><label for="sName">Surname:</label></li>
-		<li><input type="text" name="sName" size="50" /></li>
-		<li><label for="gender">Gender:</label></li>
-		<li><select name="gender">
+		<label for="email">Email:</label><br>
+		<input type="text" name="email" size="30" /><br>
+		<label for="passid">Password:</label><br>
+		<input type="password" name="passid" size="20" /><br>
+		<label for="fName">First name:</label><br>
+		<input type="text" name="fName" size="50" /><br>
+		<label for="sName">Surname:</label><br>
+		<input type="text" name="sName" size="50" /><br>
+		<label for="gender">Gender:</label><br>
+		<select name="gender">
 		<option selected="" value="Default">(Please select a gender)</option>
 		<option value="XG">X</option>
 		<option value="FM">Female</option>
 		<option value="ML">Male</option>
-		</select></li>
-		<li><label for="dob">DOB:</label></li>
-		<li><input type="text" name="dob" /></li> <! nothing much past this point>
-		<li><label>I would like to receive promotional material.</label></li>
-		<li><input type="checkbox" name="yes" value="" checked /><span>Yes</span></li>
-		<li><input type="submit" name="submit" value="Submit" /></li>
-		</ul>
+		</select><br>
+		<label for="dob">DOB:</label><br>
+		<input type="text" name="dob" /><br> <! nothing much past this point>
+		<label>I would like to receive promotional material.</label><br>
+		<input type="checkbox" name="yes" value="" checked /><span>Yes</span><br>
+		<input type="submit" name="submit" value="Submit" /><br>
 		</form>
 	</body>
     
