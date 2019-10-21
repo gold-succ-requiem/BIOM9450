@@ -7,10 +7,11 @@
     <script>  
     // JS
     // validates name input
-    function validateName(x){  
+    function validateName(name){  
 		// alert(document.getElementById(x).value);
         var re = /[A-Za-z -‘]$/;
-        if(re.test(document.getElementById(x).value)){
+		// test(): "test set".test("test variable")
+		if(re.test(document.getElementById(name).value)){
         	// document.getElementById(x).style.background =’#ccffcc’;  
 				// good bg colour
             // document.getElementById(x + ‘Error’).style.display = "none";  
