@@ -52,13 +52,13 @@ DOCTYPE html
 			return false;
 			}
 			}
-			function passid_validation(passid,mx,my)
+			function validPass(upass,mx,my)
 			{
-			var passid_len = passid.value.length;
-			if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+			var upass_len = upass.value.length;
+			if (upass_len == 0 ||upass_len >= my || upass_len < mx)
 			{
 			alert("Password should not be empty / length be between "+mx+" to "+my);
-			passid.focus();
+			upass.focus();
 			return false;
 			}
 			return true;
