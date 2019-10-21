@@ -1,249 +1,204 @@
 <!DOCTYPE html>
-<!plagiarised with love from https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php>
-<!currently in dot form - change to table later>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>JavaScript Form Validation using a sample registration form</title>
-	<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
-	<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />
-	<link rel="stylesheet" href="brackets_main.css" type="text/css" /> <!changed this to in house css>
-	<!script src="BIOM9450_HTML_register_success.html"><!js will be in separate file as well>
-	<script>
-	// called on onsubmit
-	// calls all other functions - make sure functions are in correct order!
-	function formValidation() 
-	{
-		var uid = document.registration.userid; // replace with forename
-		var passid = document.registration.passid; // duplicate this with pass2 - must match
-		var uname = document.registration.username; // replace with surname 
-		var uadd = document.registration.address; // delete this
-		var ucountry = document.registration.country; // replace with gender
-		var uzip = document.registration.zip;
-		var uemail = document.registration.email; // make this first
-		var umsex = document.registration.msex;
-		var ufsex = document.registration.fsex; 
-		if(userid_validation(uid,5,12))
-		{
-			if(passid_validation(passid,7,12))
-			{
-				if(allLetter(uname))
-				{
-					if(alphanumeric(uadd))
-					{ 
-						if(countryselect(ucountry))
-						{
-							if(allnumeric(uzip))
-							{
-								if(ValidateEmail(uemail))
-								{
-									if(validsex(umsex,ufsex))
-									{
-									}
-								} 
-							}
-						} 
-					}
-				}
-			}
-		}
-		return false;
-	}
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>JavaScript Form Validation using a sample registration form</title>
+<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
+<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />
+<link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+<script>
+function formValidation()
+{
+var uid = document.registration.userid;
+var passid = document.registration.passid;
+var uname = document.registration.username;
+var uadd = document.registration.address;
+var ucountry = document.registration.country;
+var uzip = document.registration.zip;
+var uemail = document.registration.email;
+var umsex = document.registration.msex;
+var ufsex = document.registration.fsex; if(userid_validation(uid,5,12))
+{
+if(passid_validation(passid,7,12))
+{
+if(allLetter(uname))
+{
+if(alphanumeric(uadd))
+{ 
+if(countryselect(ucountry))
+{
+if(allnumeric(uzip))
+{
+if(ValidateEmail(uemail))
+{
+if(validsex(umsex,ufsex))
+{
+}
+} 
+}
+} 
+}
+}
+}
+}
+return false;
 
-	// validates userid - change to forename
-	// checks if 5 < len(userid) < 12
-	function userid_validation(uid,mx,my)
-	{
-		var uid_len = uid.value.length;
-		if (uid_len == 0 || uid_len >= my || uid_len < mx)
-		{
-			// mx = min ; my = max
-			alert("User Id should not be empty / length be between "+mx+" to "+my);
-			uid.focus();
-			return false;
-		}
-		return true;
-	}
+} function userid_validation(uid,mx,my)
+{
+var uid_len = uid.value.length;
+if (uid_len == 0 || uid_len >= my || uid_len < mx)
+{
+alert("User Id should not be empty / length be between "+mx+" to "+my);
+uid.focus();
+return false;
+}
+return true;
+}
+function passid_validation(passid,mx,my)
+{
+var passid_len = passid.value.length;
+if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+{
+alert("Password should not be empty / length be between "+mx+" to "+my);
+passid.focus();
+return false;
+}
+return true;
+}
+function allLetter(uname)
+{ 
+var letters = /^[A-Za-z]+$/;
+if(uname.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('Username must have alphabet characters only');
+uname.focus();
+return false;
+}
+}
+function alphanumeric(uadd)
+{ 
+var letters = /^[0-9a-zA-Z]+$/;
+if(uadd.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('User address must have alphanumeric characters only');
+uadd.focus();
+return false;
+}
+}
+function countryselect(ucountry)
+{
+if(ucountry.value == "Default")
+{
+alert('Select your country from the list');
+ucountry.focus();
+return false;
+}
+else
+{
+return true;
+}
+}
+function allnumeric(uzip)
+{ 
+var numbers = /^[0-9]+$/;
+if(uzip.value.match(numbers))
+{
+return true;
+}
+else
+{
+alert('ZIP code must have numeric characters only');
+uzip.focus();
+return false;
+}
+}
+function ValidateEmail(uemail)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(uemail.value.match(mailformat))
+{
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+uemail.focus();
+return false;
+}
+} function validsex(umsex,ufsex)
+{
+x=0;
 
-	// validates password - duplicate this
-	// checks if 7 < len(password) < 12 - will soon add special chara
-	function passid_validation(passid,mx,my)
-	{
-		var passid_len = passid.value.length;
-		if (passid_len == 0 ||passid_len >= my || passid_len < mx)
-		{
-			alert("Password should not be empty / length be between "+mx+" to "+my);
-			passid.focus();
-			return false;
-		}
-		return true;
-	}
+if(umsex.checked) 
+{
+x++;
+} if(ufsex.checked)
+{
+x++; 
+}
+if(x==0)
+{
+alert('Select Male/Female');
+umsex.focus();
+return false;
+}
+else
+{
+alert('Form Succesfully Submitted');
+window.location.reload()
+return true;
+}
+}
 
-	// validates username - will change to surname
-	// checks for alphabetical characters
-	function allLetter(uname)
-	{ 
-		var letters = /^[A-Za-z]+$/;
-		if(uname.value.match(letters))
-		{
-			return true;
-		}
-		else
-		{
-			alert('Username must have alphabet characters only');
-			uname.focus();
-			return false;
-		}
-	}
-
-	// validates address
-	// checks for alphanumeric
-	function alphanumeric(uadd)
-	{ 
-		var letters = /^[0-9a-zA-Z]+$/;
-		if(uadd.value.match(letters))
-		{
-			return true;
-		}
-		else
-		{
-			alert('User address must have alphanumeric characters only');
-			uadd.focus();
-			return false;
-		}
-	}
-
-	// validates country
-	// checks country is in list - retool for gender
-	function countryselect(ucountry)
-	{
-		if(ucountry.value == "Default")
-		{
-			alert('Select your country from the list');
-			ucountry.focus();
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-
-	// validates zip code
-	// checks if zip is numeric
-	function allnumeric(uzip)
-	{ 
-		var numbers = /^[0-9]+$/;
-		if(uzip.value.match(numbers))
-		{
-			return true;
-		}
-		else
-		{
-			alert('ZIP code must have numeric characters only');
-			uzip.focus();
-			return false;
-		}
-	}
-
-	// validates email
-	function ValidateEmail(uemail)
-	{
-		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		if(uemail.value.match(mailformat))
-		{
-			return true;
-		}
-		else
-		{
-			alert("You have entered an invalid email address!");
-			uemail.focus();
-			return false;
-		}
-	}
-
-	// validates gender
-	// might remove this top lmao
-	function validsex(umsex,ufsex)
-	{
-		// adds value to counter - form invalid if x == 0!
-		x=0;
-
-		if(umsex.checked) 
-		{
-			x++;
-		} 
-		if(ufsex.checked)
-		{
-			x++; 
-		}
-		if(x==0)
-		{
-			alert('Select Male/Female');
-			umsex.focus();
-			return false;
-		}
-		else
-		{
-			alert('Form Successfully Submitted');
-			window.location.reload()
-			return true;
-		}
-	}
-	</script>
+</script>
 </head>
-
 <body onload="document.registration.userid.focus();">
-	<h1>Registration Form</h1>
-	Use tab keys to move from one input field to the next.
-	<form name='registration' onSubmit="return formValidation();">
-		<ul>
-			<! lets delete da ho beetch>
-			<li><label for="userid">User id:</label></li>
-			<li><input type="text" name="userid" size="12" /></li>
-			
-			<li><label for="passid">Password:</label></li>
-			<li><input type="password" name="passid" size="12" /></li>
-			
-			<li><label for="username">Name:</label></li>
-			<li><input type="text" name="username" size="50" /></li>
-			
-			<li><label for="address">Address:</label></li>
-			<li><input type="text" name="address" size="50" /></li>
-			
-			<! make this gender and a listbox>
-			<li><label for="country">Country:</label></li>
-			<li><select name="country">
-			<option selected="" value="Default">(Please select a country)</option>
-			<option value="AF">Australia</option>
-			<option value="AL">Canada</option>
-			<option value="DZ">India</option>
-			<option value="AS">Russia</option>
-			<option value="AD">USA</option>
-			</select></li>
-			
-			<li><label for="zip">ZIP Code:</label></li>
-			<li><input type="text" name="zip" /></li>
-			
-			<li><label for="email">Email:</label></li>
-			<li><input type="text" name="email" size="50" /></li>
-			
-			<! lets delete da ho beetch>
-			<li><label id="gender">Sex:</label></li>
-			<li><input type="radio" name="msex" value="Male" /><span>Male</span></li>
-			<li><input type="radio" name="fsex" value="Female" /><span>Female</span></li>
-			
-			<li><label>Language:</label></li>
-			<li><input type="checkbox" name="en" value="en" checked /><span>English</span></li>
-			<li><input type="checkbox" name="nonen" value="noen" /><span>Non English</span></li>
-			
-			<li><label for="desc">About:</label></li>
-			<li><textarea name="desc" id="desc"></textarea></li>
-			<li><input type="submit" name="submit" value="Submit" /></li>
-		</ul>
-	</form>
+<h1>Registration Form</h1>
+Use tab keys to move from one input field to the next.
+<form name='registration' onSubmit="return formValidation();">
+<ul>
+<li><label for="userid">User id:</label></li>
+<li><input type="text" name="userid" size="12" /></li>
+<li><label for="passid">Password:</label></li>
+<li><input type="password" name="passid" size="12" /></li>
+<li><label for="username">Name:</label></li>
+<li><input type="text" name="username" size="50" /></li>
+<li><label for="address">Address:</label></li>
+<li><input type="text" name="address" size="50" /></li>
+<li><label for="country">Country:</label></li>
+<li><select name="country">
+<option selected="" value="Default">(Please select a country)</option>
+<option value="AF">Australia</option>
+<option value="AL">Canada</option>
+<option value="DZ">India</option>
+<option value="AS">Russia</option>
+<option value="AD">USA</option>
+</select></li>
+<li><label for="zip">ZIP Code:</label></li>
+<li><input type="text" name="zip" /></li>
+<li><label for="email">Email:</label></li>
+<li><input type="text" name="email" size="50" /></li>
+<li><label id="gender">Sex:</label></li>
+<li><input type="radio" name="msex" value="Male" /><span>Male</span></li>
+<li><input type="radio" name="fsex" value="Female" /><span>Female</span></li>
+<li><label>Language:</label></li>
+<li><input type="checkbox" name="en" value="en" checked /><span>English</span></li>
+<li><input type="checkbox" name="nonen" value="noen" /><span>Non English</span></li>
+<li><label for="desc">About:</label></li>
+<li><textarea name="desc" id="desc"></textarea></li>
+<li><input type="submit" name="submit" value="Submit" /></li>
+</ul>
+</form>
 </body>
 </html>
+
 
 
 
