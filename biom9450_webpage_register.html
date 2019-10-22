@@ -13,30 +13,31 @@ DOCTYPE html
 		<script>
 			function formValidation()
 			{
-			var uemail = document.registration.email;
-			var upass = document.registration.passID;
-			var ufname = document.registration.fName;
-			var usname = document.registration.sName;
-			var udob = document.registration.dob;
-			var ugender = document.registration.gender; if(validEmail(uemail,5,12))
-			{
-			if(validPass(upass,7,12))
-			{
-			if(allLetter(ufname))
-			{
-			if(allLetter(usname))
-			{ 
-			if(genderSelect(ugender))
-			{
-			if(validDob(udob))
-			{ 
-			}
-			}
-			}
-			}
-			}
-			}
-			return false;
+				var uemail = document.registration.email;
+				var upass = document.registration.passID;
+				var ufname = document.registration.fName;
+				var usname = document.registration.sName;
+				var udob = document.registration.dob;
+				var ugender = document.registration.gender; 
+				if(validEmail(uemail,5,12))
+				{
+					if(validPass(upass,7,12))
+					{
+						if(allLetter(ufname))
+						{
+							if(allLetter(usname))
+							{ 
+								if(genderSelect(ugender))
+								{
+									if(validDob(udob))
+									{ 
+									}
+								}
+							}
+						}
+					}
+				}
+				return false;
 
 			} function validEmail(uemail,mx,my)
 			{
@@ -47,7 +48,7 @@ DOCTYPE html
 			}
 			else
 			{
-			alert("You have entered an invalid email address!");
+			alert("Please enter a valid email address");
 			uemail.focus();
 			return false;
 			}
