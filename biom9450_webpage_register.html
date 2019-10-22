@@ -37,17 +37,17 @@ DOCTYPE html
 						}
 					}
 				}
-				{
+				//{
 					// added new block here - remove this from gender
-					alert("Registration successful! Return to homepage.");
-					setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
+				//	alert("Registration successful! Return to homepage.");
+				//	setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
 					// window.location.reload()
-					return true;
-				}
-				else
-				{
+					// return true;
+				//}
+				//else
+				//{
 					return false; // testing "true" out, return to "false" if not working
-				}
+				//}
 			} 
 			
 			// tests email
@@ -135,8 +135,8 @@ DOCTYPE html
 				var numbers = /^[0-9]+$/;
 				if(udob.value.match(numbers))
 				{
-					// alert("Registration successful! Return to homepage.");
-					// setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
+					alert("Registration successful! Return to homepage.");
+					setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
 					// window.location.reload()
 					return true;
 				}
