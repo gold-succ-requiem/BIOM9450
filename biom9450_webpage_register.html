@@ -40,6 +40,8 @@ DOCTYPE html
 				return true; // testing this out, return to "false" if not working
 
 			} 
+			
+			// tests email
 			function validEmail(uemail,mx,my)
 			{
 				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -54,16 +56,21 @@ DOCTYPE html
 					return false;
 				}
 			}
+			
+			// tests password
 			function validPass(upass,mx,my)
 			{
-			var upass_len = upass.value.length;
-			if (upass_len == 0 ||upass_len >= my || upass_len < mx)
-			{
-			alert("Password should not be empty / length be between "+mx+" to "+my);
-			upass.focus();
-			return false;
-			}
-			return true;
+				var upass_len = upass.value.length;
+				if (upass_len == 0 ||upass_len >= my || upass_len < mx)
+				{
+					alert("Password should not be empty / length be between "+mx+" to "+my);
+					upass.focus();
+					return false;
+				}
+				else
+				{
+					return true;
+				}
 			}
 			function allLetter(ufname)
 			{ 
