@@ -48,10 +48,10 @@ DOCTYPE html
 				//{
 					return false; // testing "true" out, return to "false" if not working
 				//}
-			} 
+			}
 			
 			// tests email
-			function validEmail(uemail,mx,my)
+			function validEmail(uemail) // removed mx and my - not needed!
 			{
 				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 				if(uemail.value.match(mailformat))
