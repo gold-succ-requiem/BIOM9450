@@ -50,7 +50,7 @@ DOCTYPE html
 			// checks passwords match
 			function checkPass(upass,upass2)
 			{
-				if upass2 == upass
+				if upass2.value.match(upass)
 				{
 					return true;
 				}
