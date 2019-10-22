@@ -146,7 +146,7 @@ DOCTYPE html
 				
 				if(udob.value.match(numbers))
 				{
-					alert("Registration successful! Return to homepage.");
+					alert("Registration successful! Return to homepage."); // instead of page, a window pops up ; clicking ok returns to homepage
 					setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
 					window.location.reload()
 					return true;
@@ -175,13 +175,13 @@ DOCTYPE html
 		<form name='registration'>
 		<!-- onSubmit=" return formValidation();"> -->
 		<label for="email">Email:</label><br>
-		<input type="text" name="email" size="30" /><br>
+		<input type="text" name="email" size="50" /><br>
 		
 		<label for="passID">Password:</label><br>
-		<input type="password" name="passID" size="20" /><br>
+		<input type="password" name="passID" size="50" /><br>
 		
 		<label for="passID2">Re-enter Password:</label><br>
-		<input type="password" name="passID2" size="20" /><br>
+		<input type="password" name="passID2" size="50" /><br>
 		
 		<label for="fName">First name:</label><br>
 		<input type="text" name="fName" size="50" /><br>
@@ -198,10 +198,10 @@ DOCTYPE html
 		</select><br>
 		
 		<label for="dob">DOB:</label><br>
-		<input type="text" name="dob" />
+		<input type="text" name="dob" placeholder="dd/mm/yyyy" />
 		<br>
 		<br>
-		<input type="checkbox" name="yes" value="yes" /><span>I would like to receive promotional material.</span>
+		<input type="checkbox" name="yes" value="yes" /><span>I would like to receive promotional material via email.</span>
 		<br>
 		<br>
 		<input type="button" name="submit" value="Submit" onClick="formValidation(); return false;" /><br>
