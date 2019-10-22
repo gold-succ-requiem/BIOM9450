@@ -62,18 +62,18 @@ DOCTYPE html
 			}
 			
 			// tests password
-			function validPass(upass,mx,my)
+			function validPass(upass)
 			{
-				var upass_len = upass.length;
-				if (upass_len == 0 ||upass_len >= my || upass_len < mx)
+				var upass_char = /^[A-Za-z]\w{8,}$/;
+				if (upass.value.match(upass_char))
+				{
+					return true;
+				}
+				else // added else clause cos it seems logical, doing same with other functions
 				{
 					alert("Password must be between "+mx+" to "+my);
 					upass.focus();
 					return false;
-				}
-				else // added else clause cos it seems logical, doing same with other functions
-				{
-					return true;
 				}
 			}
 			
