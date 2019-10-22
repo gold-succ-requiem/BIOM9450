@@ -37,21 +37,22 @@ DOCTYPE html
 						}
 					}
 				}
-				return false;
+				return true; // testing this out, return to "false" if not working
 
-			} function validEmail(uemail,mx,my)
+			} 
+			function validEmail(uemail,mx,my)
 			{
-			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-			if(uemail.value.match(mailformat))
-			{
-			return true;
-			}
-			else
-			{
-			alert("Please enter a valid email address");
-			uemail.focus();
-			return false;
-			}
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				if(uemail.value.match(mailformat))
+				{
+					return true;
+				}
+				else
+				{
+					alert("Please enter a valid email address");
+					uemail.focus();
+					return false;
+				}
 			}
 			function validPass(upass,mx,my)
 			{
