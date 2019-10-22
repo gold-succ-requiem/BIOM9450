@@ -64,14 +64,14 @@ DOCTYPE html
 			// tests password
 			function validPass(upass)
 			{
-				var upass_char = /^[A-Za-z]\w{8,}$/;
+				var upass_char = /^[A-Za-z]\w{8,}$/; // restricts input to 
 				if (upass.value.match(upass_char))
 				{
 					return true;
 				}
 				else // added else clause cos it seems logical, doing same with other functions
 				{
-					alert("Password must be between "+mx+" to "+my);
+					alert("Password must be at least 8 characters: A-Z, a-z, 0-9");
 					upass.focus();
 					return false;
 				}
