@@ -11,46 +11,15 @@ DOCTYPE html
         <meta name="description" content="biom9450">
         <link rel="stylesheet" href="brackets_main.css">
 		<script>
-			function formValidation()
-			{
-				var uemail = document.registration.email;
-				var upass = document.registration.passID;
-				var upass2 = document.registration.passID2;
-				var ufname = document.registration.fName;
-				var usname = document.registration.sName;
-				var udob = document.registration.dob;
-				var ugender = document.registration.gender; 
-				if(validEmail(uemail))
-				{
-					if(validPass(upass,7,12)) // create checkPass(upass, upass2) as well, return true if upass == upass2
-					{
-						if(checkPass(upass,upass2))
-						{
-							if(allLetter(ufname))
-							{
-								if(allLetter(usname))
-								{ 
-									if(genderSelect(ugender))
-									{
-										if(validDob(udob))
-									}
-								}
-							}
-						}
-					}
-				}
-				return false; // testing "true" out, return to "false" if not working
-			}
-			
 			// tests email
 			function validEmail(uemail) // removed mx and my - not needed!
 			{
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // mailformat contains accepted pattern
 				if(uemail.value.match(mailformat))
 				{
 					return true;
 				}
-				else
+				else // when input doesn't match format
 				{
 					alert("Please enter a valid email address");
 					uemail.focus();
@@ -154,6 +123,40 @@ DOCTYPE html
 					return false;
 				}
 			}
+			
+			// validates form by calling functions below
+			function formValidation()
+			{
+				// variables for function, based on input in body
+				var uemail = document.registration.email;
+				var upass = document.registration.passID;
+				var upass2 = document.registration.passID2;
+				var ufname = document.registration.fName;
+				var usname = document.registration.sName;
+				var udob = document.registration.dob;
+				var ugender = document.registration.gender; 
+				if(validEmail(uemail))
+				{
+					if(validPass(upass,7,12)) // create checkPass(upass, upass2) as well, return true if upass == upass2
+					{
+						if(checkPass(upass,upass2))
+						{
+							if(allLetter(ufname))
+							{
+								if(allLetter(usname))
+								{ 
+									if(genderSelect(ugender))
+									{
+										if(validDob(udob))
+									}
+								}
+							}
+						}
+					}
+				}
+				return false; // testing "true" out, return to "false" if not working
+			}
+			
 		</script>
 	</head>
 
@@ -168,7 +171,6 @@ DOCTYPE html
         </div>
 	
 		<h1>Registration Form</h1>
-		Use tab keys to move from one input field to the next.
 		<form name='registration' onSubmit="return formValidation();">
 		<label for="email">Email:</label><br>
 		<input type="text" name="email" size="30" /><br>
