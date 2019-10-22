@@ -15,6 +15,7 @@ DOCTYPE html
 			{
 				var uemail = document.registration.email;
 				var upass = document.registration.passID;
+				var upass2 = document.registration.passID2;
 				var ufname = document.registration.fName;
 				var usname = document.registration.sName;
 				var udob = document.registration.dob;
@@ -23,14 +24,17 @@ DOCTYPE html
 				{
 					if(validPass(upass,7,12)) // create checkPass(upass, upass2) as well, return true if upass == upass2
 					{
-						if(allLetter(ufname))
+						if(checkPass(upass,upass2))
 						{
-							if(allLetter(usname))
-							{ 
-								if(genderSelect(ugender))
-								{
-									if(validDob(udob))
-									{ 
+							if(allLetter(ufname))
+							{
+								if(allLetter(usname))
+								{ 
+									if(genderSelect(ugender))
+									{
+										if(validDob(udob))
+										{ 
+										}
 									}
 								}
 							}
@@ -79,6 +83,21 @@ DOCTYPE html
 				else // added else clause cos it seems logical, doing same with other functions
 				{
 					return true;
+				}
+			}
+			
+			// checks password
+			function checkPass(upass,upass2)
+			{
+				if upass2 == upass
+				{
+					return true;
+				}
+				else
+				{
+					alert("Password must match");
+					upass2.focus();
+					return false;
 				}
 			}
 			
@@ -165,8 +184,10 @@ DOCTYPE html
 		<form name='registration' onSubmit="return formValidation();">
 		<label for="email">Email:</label><br>
 		<input type="text" name="email" size="30" /><br>
-		<label for="passid">Password:</label><br>
-		<input type="password" name="passid" size="20" /><br>
+		<label for="passID">Password:</label><br>
+		<input type="password" name="passID" size="20" /><br>
+		<label for="passID2">Re-enter Password:</label><br>
+		<input type="password" name="passID2" size="20" /><br>
 		<label for="fName">First name:</label><br>
 		<input type="text" name="fName" size="50" /><br>
 		<label for="sName">Surname:</label><br>
