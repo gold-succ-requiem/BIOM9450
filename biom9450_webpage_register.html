@@ -48,7 +48,7 @@ DOCTYPE html
 			// tests email
 			function validEmail(uemail) // removed mx and my - not needed!
 			{
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // \w is word metachar, so a-z,A-Z,0-9,_
 				if(uemail.value.match(mailformat))
 				{
 					return true;
