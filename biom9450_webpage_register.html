@@ -65,7 +65,7 @@ DOCTYPE html
 			function validPass(upass,mx,my)
 			{
 				var upass_char = /^[A-Za-z]\w{7,15}$/;
-				if(upass.value.match(upass_char))
+				if(upass.match(upass_char))
 				{
 					alert("Password should not be empty / length be between "+mx+" to "+my);
 					upass.focus();
