@@ -21,7 +21,7 @@ DOCTYPE html
 				var ugender = document.registration.gender; 
 				if(validEmail(uemail,5,12))
 				{
-					if(validPass(upass,7,12))
+					if(validPass(upass,7,12)) // create checkPass(upass, upass2) as well, return true if upass == upass2
 					{
 						if(allLetter(ufname))
 						{
@@ -67,82 +67,76 @@ DOCTYPE html
 					upass.focus();
 					return false;
 				}
-				else // added else clause cos it seems logical
+				else // added else clause cos it seems logical, doing same with other functions
 				{
 					return true;
 				}
 			}
+			
+			// checks first name is all alpha
 			function allLetter(ufname)
 			{ 
-			var letters = /^[A-Za-z]+$/;
-			if(ufname.value.match(letters))
-			{
-			return true;
+				var letters = /^[A-Za-z]+$/;
+				if(ufname.value.match(letters))
+				{
+					return true;
+				}
+				else
+				{
+					alert('First name must have alphabetical characters only');
+					ufname.focus();
+					return false;
+				}
 			}
-			else
-			{
-			alert('First name must have alphabet characters only');
-			ufname.focus();
-			return false;
-			}
-			}
+			
+			// same as allLetter(ufname) but with surname
 			function allLetter(usname)
 			{ 
-			var letters = /^[A-Za-z]+$/;
-			if(usname.value.match(letters))
-			{
-			return true;
+				var letters = /^[A-Za-z]+$/;
+				if(usname.value.match(letters))
+				{
+					return true;
+				}
+				else
+				{
+					alert('Surname must have alphabetical characters only');
+					usname.focus();
+					return false;
+				}
 			}
-			else
-			{
-			alert('Surname must have alphabet characters only');
-			ufname.focus();
-			return false;
-			}
-			}
-			function alphanumeric(uadd) // delete this
-			{ 
-			var letters = /^[0-9a-zA-Z]+$/;
-			if(uadd.value.match(letters))
-			{
-			return true;
-			}
-			else
-			{
-			alert('User address must have alphanumeric characters only');
-			uadd.focus();
-			return false;
-			}
-			}
+			
+			// ensures a gender is chosen from list, element other than default
 			function genderSelect(ugender)
 			{
-			if(ugender.value == "Default")
-			{
-			alert('Select your gender from the list');
-			ugender.focus();
-			return false;
+				if(ugender.value == "Default")
+				{
+					alert('Select your gender from the list');
+					ugender.focus();
+					return false;
+				}
+				else
+				{
+					return true;
+				}
 			}
-			else
-			{
-			return true;
-			}
-			}
+			
+			// checks date is correct - cannot be date picker unfortunately
 			function validDob(udob)
 			{ 
-			var numbers = /^[0-9]+$/;
-			if(udob.value.match(numbers))
-			{
-			alert("Registration successful! Return to homepage.");
-			setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
-			// window.location.reload()
-			return true;
-			}
-			else
-			{
-			alert('Date of birth must be between 1/1/1909 and 1/1/2009');
-			udob.focus();
-			return false;
-			}
+				var numbers = /^[0-9]+$/;
+				if(udob.value.match(numbers))
+				{
+					alert("Registration successful! Return to homepage.");
+					setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
+					// window.location.reload()
+					return true;
+				}
+				else
+				{
+					alert('Date of birth must be between 1/1/1909 and 1/1/2009');
+					udob.focus();
+					return false;
+				}
 			}
 		</script>
 	</head>
