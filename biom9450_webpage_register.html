@@ -15,9 +15,9 @@ DOCTYPE html
 			function formValidation()
 			{
 				// variables for function, based on input in body
-				var uemail = document.registration.email;
-				var upass = document.registration.passID;
-				var upass2 = document.registration.passID2;
+				var uemail = document.forms.registration.email;
+				var upass = document.registration.passID.value;
+				var upass2 = document.registration.passID2.value;
 				var ufname = document.registration.fName;
 				var usname = document.registration.sName;
 				var udob = document.registration.dob;
@@ -65,7 +65,7 @@ DOCTYPE html
 			// tests password
 			function validPass(upass,my)
 			{
-				var upass_len = upass.value.length; // checks password length
+				var upass_len = upass.length; // checks password length
 				var upass_chars = /^[A-Za-z0-9]+$/ // valid characters for password
 				if (upass_len => my) && (upass2.value == upass.value) // valid password is exception
 				{
@@ -83,7 +83,7 @@ DOCTYPE html
 			// checks passwords match
 			function checkPass(upass,upass2)
 			{
-				if upass2.value.match(upass)
+				if (upass2 == upass)
 				{
 					return true;
 				}
