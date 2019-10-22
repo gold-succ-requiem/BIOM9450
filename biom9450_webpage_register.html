@@ -11,64 +11,101 @@ DOCTYPE html
         <meta name="description" content="biom9450">
         <link rel="stylesheet" href="brackets_main.css">
 		<script>
+			// validates form by calling functions below
+			function formValidation()
+			{
+				// variables for function, based on input in body
+				var uemail = document.registration.email;
+				var upass = document.registration.passID;
+				var upass2 = document.registration.passID2;
+				var ufname = document.registration.fName;
+				var usname = document.registration.sName;
+				var udob = document.registration.dob;
+				var ugender = document.registration.gender; 
+				if(validEmail(uemail))
+				{
+					if(validPass(upass,8)) // 8 is min len
+					{
+						if(checkPass(upass,upass2))
+						{
+							if(allLetter(ufname))
+							{
+								if(allLetter(usname))
+								{ 
+									if(genderSelect(ugender))
+									{
+										if(validDob(udob))
+									}
+								}
+							}
+						}
+					}
+				}
+				return false; // testing "true" out, return to "false" if not working
+			}
+			
 			// tests email
 			function validEmail(uemail) // removed mx and my - not needed!
 			{
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // mailformat contains accepted pattern
+				var mailformat = /^([A-Za-z0-9]+)@([A-Za-z0-9]+){2,}\.([A-Za-z]+){2,}+$/; // mailformat contains accepted pattern
+					// ^ = start ; +$ = end
+					// + concatenates
 				if(uemail.value.match(mailformat))
 				{
 					return true;
 				}
 				else // when input doesn't match format
 				{
-					alert("Please enter a valid email address");
+					alert("Please enter a valid email address.");
 					uemail.focus();
 					return false;
 				}
 			}
 			
 			// tests password
-			function validPass(upass,mx,my)
+			function validPass(upass,my)
 			{
-				var upass_len = upass.value.length;
-				if (upass_len == 0 ||upass_len >= my || upass_len < mx)
-				{
-					alert("Password should not be empty / length be between "+mx+" to "+my);
-					upass.focus();
-					return false;
-				}
-				else // added else clause cos it seems logical, doing same with other functions
+				var upass_len = upass.value.length; // checks password length
+				var upass_chars = /^[A-Za-z0-9]+$/ // valid characters for password
+				if (upass_len => my) && (upass.value.match(upass_chars)) // valid password is exception
 				{
 					return true;
 				}
+				else // added else clause cos it seems logical, doing same with other functions ; invalid password is norm
+				{
+					// prompt to enter valid password
+					alert("Please enter a password of at least "+my" characters, A-Z, a-z, 0-9.");
+					upass.focus();
+					return false;
+				}
 			}
 			
-			// checks password
+			// checks passwords match
 			function checkPass(upass,upass2)
 			{
-				if upass2 == upass
+				if upass2.value.match(upass)
 				{
 					return true;
 				}
 				else
 				{
-					alert("Password must match");
+					alert("Passwords must match.");
 					upass2.focus();
 					return false;
 				}
 			}
 			
-			// checks first name is all alpha
+			// checks first name is all alpha ; for fancy names, upper not needed at beginning
 			function allLetter(ufname)
 			{ 
-				var letters = /^[A-Za-z]+$/;
+				var letters = /^[A-Za-z'\s\-]+$/;
 				if(ufname.value.match(letters))
 				{
 					return true;
 				}
 				else
 				{
-					alert('First name must have alphabetical characters only');
+					alert("First name must have alphabetical characters, -, or \' only");
 					ufname.focus();
 					return false;
 				}
@@ -77,14 +114,14 @@ DOCTYPE html
 			// same as allLetter(ufname) but with surname
 			function allLetter(usname)
 			{ 
-				var letters = /^[A-Za-z]+$/;
+				var letters = /^[A-Za-z'\s\-]+$/;
 				if(usname.value.match(letters))
 				{
 					return true;
 				}
 				else
 				{
-					alert('Surname must have alphabetical characters only');
+					alert("Surname must have alphabetical characters, -, or \' only");
 					usname.focus();
 					return false;
 				}
@@ -108,8 +145,8 @@ DOCTYPE html
 			// checks date is correct - cannot be date picker unfortunately
 			function validDob(udob)
 			{ 
-				var numbers = /^[0-9]+$/;
-				if(udob.value.match(numbers))
+				var dates = /^([A-Za-z0-9]+)\/([A-Za-z0-9]+){2,}\/([A-Za-z]+){2,}+$/;
+				if(udob.value.match(dates))
 				{
 					alert("Registration successful! Return to homepage.");
 					setTimeout("location.href = 'biom9450_webpage.html',0;"); // no more delay (arg2 = t in ms)
@@ -122,39 +159,6 @@ DOCTYPE html
 					udob.focus();
 					return false;
 				}
-			}
-			
-			// validates form by calling functions below
-			function formValidation()
-			{
-				// variables for function, based on input in body
-				var uemail = document.registration.email;
-				var upass = document.registration.passID;
-				var upass2 = document.registration.passID2;
-				var ufname = document.registration.fName;
-				var usname = document.registration.sName;
-				var udob = document.registration.dob;
-				var ugender = document.registration.gender; 
-				if(validEmail(uemail))
-				{
-					if(validPass(upass,7,12)) // create checkPass(upass, upass2) as well, return true if upass == upass2
-					{
-						if(checkPass(upass,upass2))
-						{
-							if(allLetter(ufname))
-							{
-								if(allLetter(usname))
-								{ 
-									if(genderSelect(ugender))
-									{
-										if(validDob(udob))
-									}
-								}
-							}
-						}
-					}
-				}
-				return false; // testing "true" out, return to "false" if not working
 			}
 			
 		</script>
@@ -172,28 +176,35 @@ DOCTYPE html
 	
 		<h1>Registration Form</h1>
 		<form name='registration' onSubmit="return formValidation();">
-		<label for="email">Email:</label><br>
-		<input type="text" name="email" size="30" /><br>
-		<label for="passID">Password:</label><br>
-		<input type="password" name="passID" size="20" /><br>
-		<label for="passID2">Re-enter Password:</label><br>
-		<input type="password" name="passID2" size="20" /><br>
-		<label for="fName">First name:</label><br>
-		<input type="text" name="fName" size="50" /><br>
-		<label for="sName">Surname:</label><br>
-		<input type="text" name="sName" size="50" /><br>
-		<label for="gender">Gender:</label><br>
-		<select name="gender">
-		<option selected="" value="Default">(Please select a gender)</option>
-		<option value="XG">X</option>
-		<option value="FM">Female</option>
-		<option value="ML">Male</option>
-		</select><br>
-		<label for="dob">DOB:</label><br>
-		<input type="text" name="dob" /><br> <! nothing much past this point>
-		<label>I would like to receive promotional material.</label><br>
-		<input type="checkbox" name="yes" value="yes" /><span>Yes</span><br>
-		<input type="submit" name="submit" value="Submit" /><br>
+			<label for="email">Email:</label><br>
+			<input type="text" name="email" size="30" /><br>
+			
+			<label for="passID">Password:</label><br>
+			<input type="password" name="passID" size="20" /><br>
+			
+			<label for="passID2">Re-enter Password:</label><br>
+			<input type="password" name="passID2" size="20" /><br>
+			
+			<label for="fName">First name:</label><br>
+			<input type="text" name="fName" size="50" /><br>
+			
+			<label for="sName">Surname:</label><br>
+			<input type="text" name="sName" size="50" /><br>
+			
+			<label for="gender">Gender:</label><br>
+			<select name="gender">
+				<option selected="" value="Default">(Please select a gender)</option>
+				<option value="XG">X</option>
+				<option value="FM">Female</option>
+				<option value="ML">Male</option>
+			</select><br>
+			
+			<label for="dob">DOB:</label><br>
+			<input type="text" name="dob" /><br>
+			<br>
+			<input type="checkbox" name="yes" value="yes" /><span>I would like to receive promotional material.</span><br>
+			<br>
+			<input type="submit" name="submit" value="Submit" /><br>
 		</form>
 	</body>
     
