@@ -62,12 +62,13 @@ DOCTYPE html
 			}
 			
 			// tests password
-			function validPass(upass,mx,my)
+			function validPass(upass,my)
 			{
 				var upass_len = upass.length;
-				if (upass_len == 0 ||upass_len >= my || upass_len < mx)
+				var upass_char = /^\w+$/;
+				if ((upass_len > my) && (upass.value.match(upass_char)))
 				{
-					alert("Password should not be empty / length be between "+mx+" to "+my);
+					alert("Password must be greater than "+my" characters, containing uppercase, lowercase, and numerals.");
 					upass.focus();
 					return false;
 				}
