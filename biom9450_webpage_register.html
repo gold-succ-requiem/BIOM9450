@@ -123,6 +123,9 @@ DOCTYPE html
 			var numbers = /^[0-9]+$/;
 			if(udob.value.match(numbers))
 			{
+			alert("Registration successful! Return to homepage.");
+			setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
+			// window.location.reload()
 			return true;
 			}
 			else
@@ -130,13 +133,6 @@ DOCTYPE html
 			alert('Date of birth must be between 1/1/1909 and 1/1/2009');
 			udob.focus();
 			return false;
-			}
-			else
-			{
-			alert("Registration successful! Return to homepage.");
-			setTimeout("location.href = 'biom9450_webpage.html';"); // no more delay (arg2 = t in ms)
-			// window.location.reload()
-			return true;
 			}
 			}
 		</script>
