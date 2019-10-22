@@ -176,7 +176,7 @@ DOCTYPE html
         </div>
 	
 		<h1>Registration Form</h1>
-		<form name='registration' onSubmit="return formValidation();">
+		<form name='registration'>
 			<label for="email">Email:</label><br>
 			<input type="text" name="email" size="30" /><br>
 			
@@ -205,7 +205,7 @@ DOCTYPE html
 			<br>
 			<input type="checkbox" name="yes" value="yes" /><span>I would like to receive promotional material.</span><br>
 			<br>
-			<input type="submit" name="submit" value="Submit" /><br>
+			<input type="button" name="submit" value="Submit" onClick="formValidation(); return false;"/><br>
 		</form>
 	</body>
     
