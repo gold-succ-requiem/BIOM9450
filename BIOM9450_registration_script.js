@@ -52,7 +52,7 @@ function formValidation()
 				}
 			}
 			
-			// tests password
+			// tests password validity
 			function validPass(upass)
 			{
 				var upass_char = /^[A-Za-z0-9]{8,}$/; // restricts input to at least 8 chars, A-Z, a-z, 0-9
@@ -62,7 +62,7 @@ function formValidation()
 				}
 				else // added else clause cos it seems logical, doing same with other functions
 				{
-					alert("Password must be at least 8 characters: A-Z, a-z, 0-9");
+					alert("Password must be at least 8 characters: A-Z, a-z, 0-9.");
 					upass.focus();
 					return false;
 				}
@@ -71,13 +71,13 @@ function formValidation()
 			// matches passwords
 			function checkPass(upass,upass2)
 			{
-				if(upass2 == upass)
+				if(upass.value == upass2.value) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
 					return true;
 				}
 				else
 				{
-					alert("Password must match");
+					alert("Password must match.");
 					upass2.focus();
 					return false;
 				}
