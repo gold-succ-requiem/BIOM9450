@@ -77,7 +77,7 @@ function formValidation()
 				}
 				else // default, password assumed to be not confirmed
 				{
-					alert("Password must match.");
+					alert("Fist me daddy OwO.");
 					upass2.focus();
 					return false;
 				}
