@@ -1,4 +1,4 @@
-function formValidation()
+			function formValidation()
 			{
 				var uemail = document.registration.email;
 				var upass = document.registration.passID;
@@ -69,15 +69,16 @@ function formValidation()
 			}
 			
 			// matches passwords to confirm
+			// order of variables called by function is IMPORTANT
 			function checkPass(upass2,upass)
 			{
-				if(upass2 == upass) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
+				if(upass2.value == upass.value) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
 					return true;
 				}
 				else // default, password assumed to be not confirmed
 				{
-					alert("Fist me daddy OwO.");
+					alert("Passwords do not match! Please confirm password.");
 					upass2.focus();
 					return false;
 				}
@@ -86,14 +87,14 @@ function formValidation()
 			// checks first name is all alpha
 			function allLetterFname(ufname)
 			{ 
-				var letters = /^[A-Za-z]+$/;
+				var letters = /^[A-Za-z-']+$/; // regex permitting upper and lower case, plus hyphens and apostrophes
 				if(ufname.value.match(letters))
 				{
 					return true;
 				}
-				else
+				else // default, forename not assumed to match regex
 				{
-					alert('First name must have alphabetical characters only');
+					alert('First name must have alphabetical characters only.');
 					ufname.focus();
 					return false;
 				}
@@ -102,14 +103,14 @@ function formValidation()
 			// same as allLetter(ufname) but with surname
 			function allLetterSname(usname)
 			{ 
-				var letters = /^[A-Za-z]+$/;
+				var letters = /^[A-Za-z-']+$/; // regex permitting upper and lower case, plus hyphens and apostrophes
 				if(usname.value.match(letters))
 				{
 					return true;
 				}
 				else
 				{
-					alert('Surname must have alphabetical characters only');
+					alert('Surname must have alphabetical characters only.');
 					usname.focus();
 					return false;
 				}
@@ -134,7 +135,8 @@ function formValidation()
 			function validDob(udob)
 			{ 
 				var numbers = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[0-2])[\/](19[1-9][0-9]|200[0-9]|201[1-8])$/
-				
+					// only dates between 1/1/1900 and 31/12/2018 are permitted
+					// must be in dd/mm/yyyy format (not even dd-mm-yyyy, dd-mm-yy, etc.) - html has placeholder indicating this
 				if(udob.value.match(numbers))
 				{
 					alert("Registration successful! Return to homepage."); // instead of page, a window pops up ; clicking ok returns to homepage
@@ -144,7 +146,7 @@ function formValidation()
 				}
 				else
 				{
-					alert('Date of birth must be between 1/1/1900 and 31/12/2018');
+					alert("Date of birth must be between 1/1/1900 and 31/12/2018, in dd/mm/yyyy format.");
 					udob.focus();
 					return false;
 				}
