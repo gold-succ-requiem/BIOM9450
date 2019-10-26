@@ -42,13 +42,13 @@ function formValidation()
 					// "weeaboo.namae.desu@adoresu.co.jp"
 				if(uemail.value.match(mailformat))
 				{
+					return true;
+				}
+				else // default, email assumed to be invalid
+				{
 					alert("Please enter a valid email address.");
 					uemail.focus();
 					return false;
-				}
-				else
-				{
-					return true;
 				}
 			}
 			
@@ -60,7 +60,7 @@ function formValidation()
 				{
 					return true;
 				}
-				else // added else clause cos it seems logical, doing same with other functions
+				else // default, password assumed to be invalid
 				{
 					alert("Password must be at least 8 characters: A-Z, a-z, 0-9.");
 					upass.focus();
@@ -68,14 +68,14 @@ function formValidation()
 				}
 			}
 			
-			// matches passwords
+			// matches passwords to confirm
 			function checkPass(upass2,upass)
 			{
 				if(upass2 == upass) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
 					return true;
 				}
-				else // this is the ground state
+				else // default, password assumed to be not confirmed
 				{
 					alert("Password must match.");
 					upass2.focus();
