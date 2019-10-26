@@ -84,13 +84,13 @@ DOCTYPE html
 			// matches passwords to confirm
 			function checkPass(upass2,upass)
 			{
-				if(upass2 == upass) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
+				if(upass2.value == upass.value) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
 					return true;
 				}
 				else // default, password assumed to be not confirmed
 				{
-					alert("Fist me daddy OwO.");
+					alert("Passwords do not match! Please confirm password.");
 					upass2.focus();
 					return false;
 				}
