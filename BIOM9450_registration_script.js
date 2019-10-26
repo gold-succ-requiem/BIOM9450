@@ -11,7 +11,7 @@ function formValidation()
 				{
 					if(validPass(upass)) // create checkPass(upass, upass2) as well, return true if upass == upass2
 					{
-						if(checkPass(upass,upass2))
+						if(checkPass(upass2,upass))
 						{
 							if(allLetterFname(ufname))
 							{
@@ -69,7 +69,7 @@ function formValidation()
 			}
 			
 			// matches passwords
-			function checkPass(upass,upass2)
+			function checkPass(upass2,upass)
 			{
 				if(upass2 == upass) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
@@ -77,7 +77,7 @@ function formValidation()
 				}
 				else // this is the ground state
 				{
-					alert("Passwords must match.");
+					alert("Password must match.");
 					upass2.focus();
 					return false;
 				}
