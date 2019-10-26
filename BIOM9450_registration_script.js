@@ -1,13 +1,12 @@
-			function formValidation()
+function formValidation()
 			{
-				var uemail = document.forms.registration.email;
-				var upass = document.registration.passID.value;
-				var upass2 = document.registration.passID2.value;
+				var uemail = document.registration.email;
+				var upass = document.registration.passID;
+				var upass2 = document.registration.passID2;
 				var ufname = document.registration.fName;
 				var usname = document.registration.sName;
 				var udob = document.registration.dob;
 				var ugender = document.registration.gender; 
-				
 				if(validEmail(uemail))
 				{
 					if(validPass(upass)) // create checkPass(upass, upass2) as well, return true if upass == upass2
@@ -28,31 +27,36 @@
 							}
 						}
 					}
-					return false; // testing "true" out, return to "false" if not working
 				}
+				return false; // testing "true" out, return to "false" if not working
 			}
 			
 			// tests email
 			function validEmail(uemail) // removed mx and my - not needed!
 			{
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // \w is word metachar, so a-z,A-Z,0-9,
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})*(\.\w{2,})+$/; 
+					// \w is word metachar, so a-z,A-Z,0-9
+					// some valid emails:
+					// "email@address.com"
+					// "name.surname@address.com"
+					// "weeaboo.namae.desu@adoresu.co.jp"
 				if(uemail.value.match(mailformat))
 				{
-					return true;
+					alert("Please enter a valid email address.");
+					uemail.focus();
+					return false;
 				}
 				else
 				{
-					alert("Please enter a valid email address");
-					uemail.focus();
-					return false;
+					return true;
 				}
 			}
 			
 			// tests password
 			function validPass(upass)
 			{
-				var upass_char = /^[A-Za-z]\w{8,}$/; // restricts input to at least 8 chars, A-Z, a-z, 0-9
-				if (upass.match(upass_char))
+				var upass_char = /^[A-Za-z0-9]{8,}$/; // restricts input to at least 8 chars, A-Z, a-z, 0-9
+				if (upass.value.match(upass_char)) // if value entered in upass matches regex defined in upass_char
 				{
 					return true;
 				}
