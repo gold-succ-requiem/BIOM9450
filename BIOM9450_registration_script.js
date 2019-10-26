@@ -71,11 +71,11 @@ function formValidation()
 			// matches passwords
 			function checkPass(upass,upass2)
 			{
-				if(upass == upass2) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
+				if(upass2.value.match(upass) // checks value of passID (as upass) is the same as value as passID2 (as upass2)
 				{
 					return true;
 				}
-				else
+				else // this is the ground state
 				{
 					alert("Password must match.");
 					upass2.focus();
