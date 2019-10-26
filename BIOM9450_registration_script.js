@@ -52,7 +52,7 @@
 			function validPass(upass)
 			{
 				var upass_char = /^[A-Za-z]\w{8,}$/; // restricts input to at least 8 chars, A-Z, a-z, 0-9
-				if (upass.value.match(upass_char))
+				if (upass.match(upass_char))
 				{
 					return true;
 				}
