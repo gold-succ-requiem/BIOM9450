@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PHPex8 - GET</title>
+</head>
+
+<body>
+
+	<!-- 
+         We want to generate the following query URL and send it to Google using a form and the GET method.
+    
+    	 http://www.google.com.au/search?sourceid=chrome&ie=UTF-8&q=bananas 
+    
+   		 We are not using PHP here.
+    -->
+
+	<form action="http://www.google.com/search" method="GET" target="blank"> <!-- Try using method="POST" . It won't work. -->
+        <input type="hidden" name = "ie" value = "UTF-8">
+	    <input type="text" name = "q" value = "">
+        <input type="submit" value="Search Google!" />
+    </form>
+
+</body>
+</html>
