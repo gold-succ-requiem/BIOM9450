@@ -14,6 +14,72 @@ DOCTYPE html
 	</head>
 
 	<body> <onload="document.registration.email.focus();">
+	
+		<?php>
+			// home variables - COMMENT OUT BEFORE SUBMITTING
+			$serverName="Driver={Microsoft Access Driver (*.mdb)}; Dbq=$dbName";
+			$userName=" ";
+			$password=" ";
+			$dbName="project.mdb";
+			
+			// uni variables - UNCOMMENT AND TEST BEFORE SUBMITTING
+			// $serverName="z5232927";
+			// $userName=" ";
+			// $password=" ";
+			// $dbName="project.mdb";
+			
+			// query variables
+			$fhandle = fopen($dbName,‘w’) or die(“can’t open file”); 
+				// exception handling: if there are issues with opening and writing in project.mdb, then the command dies and prints out text
+			
+			$sqlQuery = "SELECT * FROM Registered WHERE Banned=False;";
+				// selects any entry from the "Registered" table, provided the field "Banned" is "False"
+			
+			$registered = odbc_exec($conn,$sqlQuery); 
+				// prepares and executes the SQL statement "sqlQuery"
+				// odbc_exec(connection id, 
+			
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			// create connection
+			// $conn = odbc_connect(DSN, $username, $password, SQL_CUR_USE_ODBC);
+			$conn = odbc_connect($serverName,$userName,$password, SQL_CUR_USE_ODBC);
+			
+			// ifelse to check if odbc connection to .mdb was successful
+			if(!$conn){ 
+				exit("Connection failed: ". $conn); 
+				} 
+			else { 
+				echo "Connection successful!"); 
+				}
+			
+			// error if entry is registered
+			if(!$registered){ 
+				exit("Error in SQL"); 
+			}
+			
+			//
+			$sqlInsert = "INSERT INTO Registration (email,password,forename,surname,dateBirth,gender) 
+				VALUES (email,passID,fName,sName,dob,gender)";
+				// defines SQL query for adding values to table as variable "sqlInsert"
+				// make sure the variables in the query match the variables entered in the form!
+				// INSERT INTO -> fields in project.mdb / Registration
+				// VALUES -> values in webform "biom9450_webpage_register.html"
+				// how to add marketing?
+				// how to check banned?
+			
+			// checks if input was added to .mdb, probably, but this code was made for MySQLi so idk XD
+			if ($conn->query($sqlInsert) === TRUE) {
+				echo "New record created successfully";
+			} 
+			else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+				}
+
+			// closes db connection, but this is for MySQLi so...
+			$conn->close();
+		<php>
+
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
