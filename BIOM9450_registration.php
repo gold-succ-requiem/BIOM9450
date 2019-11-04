@@ -14,7 +14,15 @@ DOCTYPE html
 	</head>
 
 	<body> <onload="document.registration.email.focus();">
-	
+		<div class="header">
+        <a href = "biom9450_webpage.html">
+        <h1>AHICon<br>
+            Australian Health Informatics Conference 2019</h1>
+		<! add pic >
+        </a>
+        <p>16 Dec, Sydney</p>
+        </div>
+		
 		<?php
 			// home variables - COMMENT OUT BEFORE SUBMITTING
 			$serverName="Driver={Microsoft Access Driver (*.mdb)}; Dbq=$dbName";
@@ -34,6 +42,7 @@ DOCTYPE html
 			
 			$sqlQuery = "SELECT * FROM Registered WHERE Banned=False;";
 				// selects any entry from the "Registered" table, provided the field "Banned" is "False"
+				// maybe not needed here
 			
 			$registered = odbc_exec($conn,$sqlQuery); 
 				// prepares and executes the SQL statement "sqlQuery"
@@ -42,7 +51,7 @@ DOCTYPE html
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
 			// create connection
-			// $conn = odbc_connect(DSN, $username, $password, SQL_CUR_USE_ODBC);
+			// $conn = odbc_connect(DSN, user name, password, SQL_CUR_USE_ODBC);
 			$conn = odbc_connect($serverName,$userName,$password, SQL_CUR_USE_ODBC);
 			
 			// ifelse to check if odbc connection to .mdb was successful
@@ -79,7 +88,7 @@ DOCTYPE html
 			// closes db connection, but this is for MySQLi so...
 			$conn->close();
 		?>
-
+		
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
@@ -95,6 +104,7 @@ DOCTYPE html
 			name is "registration" ; should it be "$registration"?
 			action takes user to success page should all functions be "TRUE"
 			uses "POST" method
+			this will need a conditional "POST"
 			-->
 		
 		<label for="email">Email:</label><br>
