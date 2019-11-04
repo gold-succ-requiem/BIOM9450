@@ -26,6 +26,35 @@ DOCTYPE html
 		
 		echo $regoEmail . " has already registered! Please register with another email address."
 	?>
+	
+	
+	<h2>Registered users:</h2>
+	
+	<?php
+		// uni variables - UNCOMMENT AND TEST BEFORE SUBMITTING
+		$serverName="z5232927";
+		$userName=" ";
+		$password=" ";
+		$dbName="project.mdb";
+		
+		// fetches *.mdb row and displays it as a table/array?
+		$conn = odbc_connect($serverName,$userName,$password, SQL_CUR_USE_ODBC);
+		$sqlFetch = "SELECT * FROM Registration WHERE banned=False;";	// within entry, returns contents of field below if "banned" unchecked
+		$registered = odbc_exec($conn,$sqlFetch); 
+		while(odbc_fetch_row($registered){ 								// while loop, so should output for all entries
+			echo odbc_result($registered,"forename"); 
+			echo " "; 													// these are blank spaces
+			echo odbc_result($registered,"surname"); 
+			echo " "; 
+			echo odbc_result($registered,"email"); 
+			}
+
+		
+	?>
+	
+		<p>
+			Click <a href = "BIOM9450_registration.php">HERE</a> to return to registration.
+		</p>
 	<br>
 	<br>
 	<br>
