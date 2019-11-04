@@ -63,8 +63,8 @@ DOCTYPE html
 				VALUES (email,passID,fName,sName,dob,gender)";
 				// defines SQL query for adding values to table as variable "sqlInsert"
 				// make sure the variables in the query match the variables entered in the form!
-				// INSERT INTO fields in project.mdb / Registration
-				// VALUES -> values in webform "biom9450_webpage_register.html"
+				// INSERT INTO: fields in project.mdb / Registration
+				// VALUES: values in webform "biom9450_webpage_register.html"
 				// how to add marketing?
 				// how to check banned?
 			
@@ -79,7 +79,7 @@ DOCTYPE html
 			// closes db connection, but this is for MySQLi so...
 			$conn->close();
 		?>
-		
+
 		<div class="header">
         <a href = "biom9450_webpage.html">
         <h1>AHICon<br>
