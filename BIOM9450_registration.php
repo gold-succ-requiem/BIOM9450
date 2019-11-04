@@ -69,7 +69,7 @@ DOCTYPE html
 				// how to check banned?
 			
 			// checks if input was added to .mdb, probably, but this code was made for MySQLi so idk XD
-			if ($conn->query($sqlInsert) === TRUE) {
+			if ($conn=>query($sqlInsert) === TRUE) {
 				echo "New record created successfully";
 			} 
 			else {
