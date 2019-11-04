@@ -14,21 +14,60 @@ DOCTYPE html
 	</head>
 
 	<body>
+	<div class="header">
+        <a href = "biom9450_webpage.html">
+        <h1>AHICon<br>
+            Australian Health Informatics Conference 2019</h1>
+		<! add pic >
+        </a>
+        <p>16 Dec, Sydney</p>
+    </div>
 	
 	<h1>Registration successful!</h1>
 	<br>
 	<h2>Your details:</h2>
 	
 	<?php
+		// variables corresponding to form in "BIOM9450_registration.php"
 		$regofName = $_POST["fName"];
 		$regosName = $_POST["sName"];
 		$regoDob = $_POST["dob"];
 		$regoEmail = $_POST["email"];
-		
+
+		// displays registrant details
+		// how to x out dd and mm?
 		echo "Name: " . $regofName . " " . $regosName
 		echo "DOB : " . $regoDob
 		echo "Email: " . $regoEmail
 	?>
+	
+	<h2>Registered users:</h2>
+	
+	<?php
+		// uni variables - UNCOMMENT AND TEST BEFORE SUBMITTING
+		$serverName="z5232927";
+		$userName=" ";
+		$password=" ";
+		$dbName="project.mdb";
+		
+		// fetches *.mdb row and displays it as a table/array?
+		$conn = odbc_connect($serverName,$userName,$password, SQL_CUR_USE_ODBC);
+		$sqlFetch = "SELECT * FROM Registration WHERE banned=False;";	// within entry, returns contents of field below if "banned" unchecked
+		$registered = odbc_exec($conn,$sqlFetch); 
+		while(odbc_fetch_row($registered){ 								// while loop, so should output for all entries
+			echo odbc_result($registered,"forename"); 
+			echo " "; 													// these are blank spaces
+			echo odbc_result($registered,"surname"); 
+			echo " "; 
+			echo odbc_result($registered,"email"); 
+			}
+
+		
+	?>
+	
+		<p>
+			Click <a href = "biom9450_webpage.html">HERE</a> to return to homepage.
+		</p>
 	<br>
 	<br>
 	<br>
