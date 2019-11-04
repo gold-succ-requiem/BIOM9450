@@ -64,7 +64,7 @@ DOCTYPE html
 				// defines SQL query for adding values to table as variable "sqlInsert"
 				// make sure the variables in the query match the variables entered in the form!
 				// INSERT INTO: fields in project.mdb / Registration
-				// VALUES: values in webform "biom9450_webpage_register.html"
+				// VALUES values in webform "biom9450_webpage_register.html"
 				// how to add marketing?
 				// how to check banned?
 			
